@@ -24,10 +24,20 @@ def liczenie():
 
     okno.after(1000, liczenie)
 
-def obrazek():
-    for wys in []:
-        pass
+def obrazek(wysokosc_choinki):
+    okno.delete("all")
+    for i in range(1, wysokosc_choinki + 1):
+        x = (wysokosc_choinki - i) * 20  # 
+        y = i * 40
+        szerokosc_gwiazdki = 40
+        
+        okno.create_text(x, y, text="*" * (2*i - 1), font=("Courier", 14), anchor="w")
 
+    okno.create_rectangle((wysokosc_choinki - 1) * 20 + 15, wysokosc_choinki * 40, (wysokosc_choinki - 1) * 20 + 25, wysokosc_choinki * 40 + 40, fill="brown")
+
+def rysuj_choinke_button():
+    wysokosc_choinki = int(entry_wysokosc_choinki.get())
+    rysuj_choinke(wysokosc_choinki)
 
 
 okno = tk.Tk()
