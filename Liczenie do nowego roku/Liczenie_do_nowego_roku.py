@@ -25,7 +25,6 @@ def liczenie():
     okno.after(1000, liczenie)
 
 def obrazek(wysokosc_choinki):
-    okno.delete("all")
     for i in range(1, wysokosc_choinki + 1):
         x = (wysokosc_choinki - i) * 20  # 
         y = i * 40
@@ -37,7 +36,7 @@ def obrazek(wysokosc_choinki):
 
 def rysuj_choinke_button():
     wysokosc_choinki = int(entry_wysokosc_choinki.get())
-    rysuj_choinke(wysokosc_choinki)
+    obrazek(wysokosc_choinki)
 
 
 okno = tk.Tk()
@@ -45,6 +44,17 @@ okno.title("Ile do sylwestra by Karol Jablonski")
 
 etykieta = tk.Label(okno, font=("Helvetica", 14), pady=20)
 etykieta.pack()
+
+label_wysokosc_choinki = tk.Label(okno, text="Wysokosc choinki:")
+label_wysokosc_choinki.pack()
+
+entry_wysokosc_choinki = tk.Entry(okno)
+entry_wysokosc_choinki.pack()
+
+entry_wysokosc_choinki.insert(0, "5")
+
+button_rysuj_choinke = tk.Button(okno, text="Rysuj choinke", command=rysuj_choinke_button)
+button_rysuj_choinke.pack()
 
 liczenie()
 
