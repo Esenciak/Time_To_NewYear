@@ -1,4 +1,3 @@
-from ast import For
 from datetime import date, datetime
 import time
 import tkinter as tk
@@ -24,19 +23,20 @@ def liczenie():
 
     okno.after(1000, liczenie)
 
-def obrazek(wysokosc_choinki):
-    for i in range(1, wysokosc_choinki + 1):
-        x = (wysokosc_choinki - i) * 20  # 
+def rysuj_choinke(wysokosc_choinki):
+    for i in range(1, min(wysokosc_choinki, 10) + 1):
+        x = (wysokosc_choinki - i) * 20
         y = i * 40
         szerokosc_gwiazdki = 40
         
         okno.create_text(x, y, text="*" * (2*i - 1), font=("Courier", 14), anchor="w")
 
-    okno.create_rectangle((wysokosc_choinki - 1) * 20 + 15, wysokosc_choinki * 40, (wysokosc_choinki - 1) * 20 + 25, wysokosc_choinki * 40 + 40, fill="brown")
+    okno.create_rectangle((min(wysokosc_choinki, 10) - 1) * 20 + 15, min(wysokosc_choinki, 10) * 40,
+                          (min(wysokosc_choinki, 10) - 1) * 20 + 25, min(wysokosc_choinki, 10) * 40 + 40, fill="brown")
 
 def rysuj_choinke_button():
     wysokosc_choinki = int(entry_wysokosc_choinki.get())
-    obrazek(wysokosc_choinki)
+    rysuj_choinke(wysokosc_choinki)
 
 
 okno = tk.Tk()
