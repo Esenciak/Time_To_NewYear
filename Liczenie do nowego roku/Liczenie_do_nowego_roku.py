@@ -19,25 +19,13 @@ def liczenie():
 
     canvas.after(1000, liczenie)
 
-def rysuj_choinke(wysokosc_choinki):
-    if dzis.day == swieta.day and dzis.month == swieta.month:
-        for i in range(1, min(wysokosc_choinki, 10) + 1):  
-            x = (wysokosc_choinki - i) * 20
-            y = i * 40
-            szerokosc_gwiazdki = 40
-
-            odstep_miedzy_gwiazdkami = 20
-            x_gwiazdki = x
-            for _ in range(2 * i - 1):
-                canvas.create_text(x_gwiazdki, y, text="*", font=("Courier", 14), anchor="w")
-                x_gwiazdki += odstep_miedzy_gwiazdkami
-
-        canvas.create_rectangle((min(wysokosc_choinki, 10) - 1) * 20 + 15, min(wysokosc_choinki, 10) * 40,
-                                (min(wysokosc_choinki, 10) - 1) * 20 + 25, min(wysokosc_choinki, 10) * 40 + 40, fill="brown")
-
 def rysuj_choinke_button():
-    wysokosc_choinki = int(entry_wysokosc_choinki.get())
-    rysuj_choinke(wysokosc_choinki)
+    today = datetime.now()
+    christmas = datetime(today.year, 12, 24)
+
+    if today.day == christmas.day and today.month == christmas.month:
+        wysokosc_choinki = int(entry_wysokosc_choinki.get())
+        rysuj_choinke(wysokosc_choinki)
 
 okno = tk.Tk()
 okno.title("Ile do sylwestra by Karol Jablonski")
@@ -53,12 +41,13 @@ entry_wysokosc_choinki.insert(0, "5")
 canvas = tk.Canvas(okno, width=400, height=400)
 canvas.pack()
 
-dzis = datetime.now()
-swieta = datetime(dzis.year, 12, 24)
-if dzis.day == swieta.day and dzis.month == swieta.month:
-    button_rysuj_choinke = tk.Button(okno, text="Rysuj choinke ", command=rysuj_choinke_button)
-    button_rysuj_choinke.pack()
-
 liczenie()
+
+
+today = datetime.now()
+christmas = datetime(today.year, 12, 24)
+if today.day == christmas.day and today.month == christmas.month:
+    button_rysuj_choinke = tk.Button(okno, text="Rysuj choinke", command=rysuj_choinke_button)
+    button_rysuj_choinke.pack()
 
 okno.mainloop()
