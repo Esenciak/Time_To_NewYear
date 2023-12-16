@@ -4,17 +4,24 @@ import tkinter as tk
 def liczenie():
     dzis = datetime.now()
     sylwester = datetime(dzis.year + 1, 1, 1)
+    swieta = datetime(dzis.year,12,24,8,0,0)
 
     roznica = sylwester - dzis
+    roznica_sw = swieta - dzis
     sekundy = roznica.total_seconds()
-    minuty = sekundy / 60
-    godziny = minuty / 60
+    sekundy_sw = roznica_sw.total_seconds()
     dni_poz = int(sekundy // (24 * 3600))
+    dni_poz_sw = int(sekundy_sw // (24 * 3600))
     godz_poz = int((sekundy % (24 * 3600)) // 3600)
+    godz_poz_sw = int((sekundy_sw % (24 * 3600)) // 3600)
     min_poz = int((sekundy % 3600) // 60)
+    min_poz_sw = int((sekundy_sw % (24 * 3600)) // 3600)
     sek_poz_reszta = int(sekundy % 60)
+    sek_poz_reszta_sw = int(sekundy_sw % 60)
 
-    etykieta.config(text=f"Do sylwestra pozostalo: {dni_poz:.0f} dni, {godz_poz:.0f} godzin, {min_poz:.0f} minut, {sek_poz_reszta:.0f} sekund.")
+
+
+    etykieta.config(text=f"Do sylwestra pozostalo: {dni_poz:.0f} dni, {godz_poz:.0f} godzin, {min_poz:.0f} minut, {sek_poz_reszta:.0f} sekund.\n Do swiat bozego narodzenai zostalo:  {dni_poz_sw:.0f} dni, {godz_poz_sw:.0f} godzin, {min_poz_sw:.0f} minut, {sek_poz_reszta_sw:.0f} sekund.")
 
     okno.after(1000, liczenie)
 
